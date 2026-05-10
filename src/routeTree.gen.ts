@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ONamaRouteImport } from './routes/o-nama'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as KalkulatorRouteImport } from './routes/kalkulator'
+import { Route as KakoFunkcioniraRouteImport } from './routes/kako-funkcionira'
+import { Route as InstalateriRouteImport } from './routes/instalateri'
+import { Route as FinanciranjeRouteImport } from './routes/financiranje'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ONamaRoute = ONamaRouteImport.update({
+  id: '/o-nama',
+  path: '/o-nama',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KalkulatorRoute = KalkulatorRouteImport.update({
+  id: '/kalkulator',
+  path: '/kalkulator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KakoFunkcioniraRoute = KakoFunkcioniraRouteImport.update({
+  id: '/kako-funkcionira',
+  path: '/kako-funkcionira',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstalateriRoute = InstalateriRouteImport.update({
+  id: '/instalateri',
+  path: '/instalateri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanciranjeRoute = FinanciranjeRouteImport.update({
+  id: '/financiranje',
+  path: '/financiranje',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/financiranje': typeof FinanciranjeRoute
+  '/instalateri': typeof InstalateriRoute
+  '/kako-funkcionira': typeof KakoFunkcioniraRoute
+  '/kalkulator': typeof KalkulatorRoute
+  '/kontakt': typeof KontaktRoute
+  '/o-nama': typeof ONamaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/financiranje': typeof FinanciranjeRoute
+  '/instalateri': typeof InstalateriRoute
+  '/kako-funkcionira': typeof KakoFunkcioniraRoute
+  '/kalkulator': typeof KalkulatorRoute
+  '/kontakt': typeof KontaktRoute
+  '/o-nama': typeof ONamaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/financiranje': typeof FinanciranjeRoute
+  '/instalateri': typeof InstalateriRoute
+  '/kako-funkcionira': typeof KakoFunkcioniraRoute
+  '/kalkulator': typeof KalkulatorRoute
+  '/kontakt': typeof KontaktRoute
+  '/o-nama': typeof ONamaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/financiranje'
+    | '/instalateri'
+    | '/kako-funkcionira'
+    | '/kalkulator'
+    | '/kontakt'
+    | '/o-nama'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/blog'
+    | '/financiranje'
+    | '/instalateri'
+    | '/kako-funkcionira'
+    | '/kalkulator'
+    | '/kontakt'
+    | '/o-nama'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog'
+    | '/financiranje'
+    | '/instalateri'
+    | '/kako-funkcionira'
+    | '/kalkulator'
+    | '/kontakt'
+    | '/o-nama'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRoute
+  FinanciranjeRoute: typeof FinanciranjeRoute
+  InstalateriRoute: typeof InstalateriRoute
+  KakoFunkcioniraRoute: typeof KakoFunkcioniraRoute
+  KalkulatorRoute: typeof KalkulatorRoute
+  KontaktRoute: typeof KontaktRoute
+  ONamaRoute: typeof ONamaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/o-nama': {
+      id: '/o-nama'
+      path: '/o-nama'
+      fullPath: '/o-nama'
+      preLoaderRoute: typeof ONamaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kalkulator': {
+      id: '/kalkulator'
+      path: '/kalkulator'
+      fullPath: '/kalkulator'
+      preLoaderRoute: typeof KalkulatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kako-funkcionira': {
+      id: '/kako-funkcionira'
+      path: '/kako-funkcionira'
+      fullPath: '/kako-funkcionira'
+      preLoaderRoute: typeof KakoFunkcioniraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instalateri': {
+      id: '/instalateri'
+      path: '/instalateri'
+      fullPath: '/instalateri'
+      preLoaderRoute: typeof InstalateriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financiranje': {
+      id: '/financiranje'
+      path: '/financiranje'
+      fullPath: '/financiranje'
+      preLoaderRoute: typeof FinanciranjeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +197,24 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRoute: BlogRoute,
+  FinanciranjeRoute: FinanciranjeRoute,
+  InstalateriRoute: InstalateriRoute,
+  KakoFunkcioniraRoute: KakoFunkcioniraRoute,
+  KalkulatorRoute: KalkulatorRoute,
+  KontaktRoute: KontaktRoute,
+  ONamaRoute: ONamaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
