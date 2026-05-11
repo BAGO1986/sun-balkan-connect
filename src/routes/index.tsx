@@ -105,12 +105,7 @@ function HeroCards() {
               />
               <div className={`absolute inset-0 transition-opacity duration-700 ${isActive ? "bg-gradient-to-t from-navy/85 via-navy/35 to-transparent" : "bg-gradient-to-t from-navy/80 via-navy/40 to-navy/10"}`} />
               <div className="relative flex h-full flex-col justify-end p-5 lg:p-8 text-primary-foreground">
-                <h3
-                  className={`font-display font-semibold leading-[1.05] tracking-tight whitespace-pre-line transition-all duration-500 ${
-                    isActive ? "text-3xl lg:text-5xl" : "text-lg lg:text-2xl [writing-mode:vertical-rl] rotate-180 lg:writing-mode-horizontal lg:rotate-0"
-                  }`}
-                  style={!isActive ? { writingMode: "horizontal-tb" } : undefined}
-                >
+                <h3 className={`font-display font-semibold leading-[1.05] tracking-tight whitespace-pre-line transition-all duration-500 ${isActive ? "text-3xl lg:text-5xl" : "text-lg lg:text-xl"}`}>
                   {isActive ? c.title : c.title.replace("\n", " ")}
                 </h3>
                 <div
