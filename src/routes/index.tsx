@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Sparkles, Sun, TrendingUp, Battery, Leaf, Star, Zap, CheckCircle2, MapPin, Clock, Award } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShieldCheck, Sparkles, Sun, TrendingUp, Battery, Leaf, Star, Zap, CheckCircle2, MapPin, Clock, Award } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Counter } from "@/components/site/Counter";
+import { useState } from "react";
 import heroHouse from "@/assets/hero-house.jpg";
 import cardHeating from "@/assets/card-heating.jpg";
 import cardElectricity from "@/assets/card-electricity.jpg";
@@ -68,67 +69,99 @@ function Hero() {
 }
 
 const heroCards = [
-  { img: cardHeating, title: "Grijanje i\nhlađenje", to: "/kalkulator", small: true },
-  { img: cardElectricity, title: "Tarife za\nstruju", to: "/financiranje", small: true },
-  {
-    img: heroHouse,
-    title: "Snizi račun za struju\nna desetljeća.",
-    desc: "Usporedi solarne ponude i vidi dugoročnu uštedu za svoj dom.",
-    to: "/kalkulator",
-    cta: "Zatraži ponudu",
-    feature: true,
-  },
-  { img: cardBattery, title: "Kućna\nbaterija", to: "/kalkulator", small: true },
-  { img: cardEv, title: "Punjenje\nelektričnih auta", to: "/kalkulator", small: true },
+  { img: cardHeating, title: "Grijanje i\nhlađenje", desc: "Toplinske pumpe i klima sustavi prilagođeni za naše tržište.", to: "/kalkulator" },
+  { img: cardElectricity, title: "Tarife za\nstruju", desc: "Usporedi opskrbljivače i prebaci se na povoljniju tarifu.", to: "/financiranje" },
+  { img: heroHouse, title: "Snizi račun\nna desetljeća.", desc: "Usporedi solarne ponude i vidi dugoročnu uštedu za svoj dom.", to: "/kalkulator", cta: "Zatraži ponudu" },
+  { img: cardBattery, title: "Kućna\nbaterija", desc: "Pohrani solarnu energiju i koristi je kad ti treba.", to: "/kalkulator" },
+  { img: cardEv, title: "Punjenje\nelektričnih auta", desc: "Kućni i poslovni punjači integrirani sa solarnom elektranom.", to: "/kalkulator" },
 ];
 
 function HeroCards() {
+  const [active, setActive] = useState(2);
+  const next = () => setActive((a) => (a + 1) % heroCards.length);
+  const prev = () => setActive((a) => (a - 1 + heroCards.length) % heroCards.length);
+
   return (
-    <div className="mt-12 grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-7 lg:[grid-template-columns:1fr_1fr_2.4fr_1fr_1fr] lg:items-stretch">
-      {heroCards.map((c, i) => {
-        const isFeature = c.feature;
-        return (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className={`${isFeature ? "col-span-2 md:col-span-4 lg:col-span-1 lg:row-span-1" : ""} ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
-          >
+    <div className="mt-12">
+      {/* Desktop / tablet: expanding flex carousel */}
+      <div className="hidden md:flex gap-3 lg:gap-4 h-[460px] lg:h-[560px]">
+        {heroCards.map((c, i) => {
+          const isActive = i === active;
+          return (
             <Link
+              key={i}
               to={c.to}
-              className={`group relative block h-full overflow-hidden rounded-3xl shadow-elevated transition-transform duration-500 hover:-translate-y-1 ${
-                isFeature ? "aspect-[4/3] lg:aspect-auto lg:min-h-[520px]" : "aspect-[3/4] lg:min-h-[520px]"
-              }`}
+              onMouseEnter={() => setActive(i)}
+              onFocus={() => setActive(i)}
+              aria-label={c.title.replace("\n", " ")}
+              className="group relative block overflow-hidden rounded-3xl shadow-elevated transition-[flex-grow] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-solar"
+              style={{ flexGrow: isActive ? 5 : 1, flexBasis: 0, minWidth: 0 }}
             >
               <img
                 src={c.img}
-                alt={c.title.replace("\n", " ")}
-                loading={isFeature ? "eager" : "lazy"}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[600ms] ease-out will-change-transform group-hover:scale-[1.05]"
+                alt=""
+                loading={i === 2 ? "eager" : "lazy"}
+                className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className={`absolute inset-0 ${isFeature ? "bg-gradient-to-t from-navy/85 via-navy/30 to-transparent" : "bg-gradient-to-t from-navy/80 via-navy/10 to-transparent"}`} />
-              <div className={`relative flex h-full flex-col justify-end p-5 sm:p-6 ${isFeature ? "lg:p-9" : ""} text-primary-foreground`}>
-                <h3 className={`font-display font-semibold leading-[1.1] tracking-tight whitespace-pre-line ${isFeature ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"}`}>
-                  {c.title}
+              <div className={`absolute inset-0 transition-opacity duration-700 ${isActive ? "bg-gradient-to-t from-navy/85 via-navy/35 to-transparent" : "bg-gradient-to-t from-navy/80 via-navy/40 to-navy/10"}`} />
+              <div className="relative flex h-full flex-col justify-end p-5 lg:p-8 text-primary-foreground">
+                <h3 className={`font-display font-semibold leading-[1.05] tracking-tight whitespace-pre-line transition-all duration-500 ${isActive ? "text-3xl lg:text-5xl" : "text-lg lg:text-xl"}`}>
+                  {isActive ? c.title : c.title.replace("\n", " ")}
                 </h3>
-                {isFeature && c.desc && (
-                  <p className="mt-3 max-w-md text-sm text-primary-foreground/85 sm:text-base">{c.desc}</p>
-                )}
-                {isFeature ? (
-                  <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-5 py-3 text-sm font-semibold text-navy transition-transform group-hover:scale-[1.03]">
-                    {c.cta} <ArrowRight className="h-4 w-4" />
-                  </span>
-                ) : (
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-primary-foreground/90">
-                    Saznaj više <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </span>
-                )}
+                <div
+                  className={`grid transition-[grid-template-rows,opacity,margin] duration-500 ${
+                    isActive ? "mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="max-w-md text-sm text-primary-foreground/90 lg:text-base">{c.desc}</p>
+                    <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-5 py-3 text-sm font-semibold text-navy transition-transform group-hover:scale-[1.03]">
+                      {c.cta ?? "Saznaj više"} <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
               </div>
             </Link>
-          </motion.div>
-        );
-      })}
+          );
+        })}
+      </div>
+
+      {/* Mobile: stacked */}
+      <div className="grid gap-3 md:hidden">
+        {heroCards.map((c, i) => (
+          <Link key={i} to={c.to} className="group relative block aspect-[16/10] overflow-hidden rounded-3xl shadow-elevated">
+            <img src={c.img} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/30 to-transparent" />
+            <div className="relative flex h-full flex-col justify-end p-5 text-primary-foreground">
+              <h3 className="font-display text-2xl font-semibold leading-tight whitespace-pre-line">{c.title}</h3>
+              <p className="mt-2 max-w-md text-sm text-primary-foreground/85">{c.desc}</p>
+              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-solar">
+                {c.cta ?? "Saznaj više"} <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Carousel controls */}
+      <div className="mt-6 hidden items-center justify-center gap-4 md:flex">
+        <button onClick={prev} aria-label="Prethodno" className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background text-navy transition-colors hover:bg-secondary">
+          <ArrowLeft className="h-4 w-4" />
+        </button>
+        <div className="flex items-center gap-2">
+          {heroCards.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              aria-label={`Kartica ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-navy" : "w-2 bg-navy/25 hover:bg-navy/50"}`}
+            />
+          ))}
+        </div>
+        <button onClick={next} aria-label="Sljedeće" className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background text-navy transition-colors hover:bg-secondary">
+          <ArrowRight className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }
