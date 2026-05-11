@@ -4,6 +4,10 @@ import { ArrowRight, ShieldCheck, Sparkles, Sun, TrendingUp, Battery, Leaf, Star
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Counter } from "@/components/site/Counter";
 import heroHouse from "@/assets/hero-house.jpg";
+import cardHeating from "@/assets/card-heating.jpg";
+import cardElectricity from "@/assets/card-electricity.jpg";
+import cardBattery from "@/assets/card-battery.jpg";
+import cardEv from "@/assets/card-ev.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,68 +42,94 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
-      <div className="absolute inset-0 -z-10 grid-bg" />
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-12 pb-20 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pt-20 lg:pb-32">
-        <motion.div initial="hidden" animate="show" variants={fadeUp} className="lg:col-span-6 flex flex-col justify-center">
+      <div className="mx-auto max-w-[1400px] px-5 pt-10 pb-16 lg:px-8 lg:pt-16 lg:pb-24">
+        <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-eco/30 bg-eco-soft px-3 py-1 text-xs font-semibold text-eco">
-            <Sparkles className="h-3.5 w-3.5" /> Nova generacija solarne platforme
+            <Sparkles className="h-3.5 w-3.5" /> Solarna platforma za Balkan
           </span>
-          <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-navy sm:text-5xl lg:text-6xl">
-            Uštedi do <span className="gradient-text">70%</span> na računima za struju uz solarnu energiju
+          <h1 className="mx-auto mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-navy sm:text-5xl lg:text-6xl">
+            Napajaj svoj dom <span className="gradient-text">na svoj način</span>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Usporedi ponude provjerenih instalatera solarnih elektrana u Bosni i Hercegovini i Hrvatskoj. Brzo, transparentno, bez obaveza.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Solarne elektrane, baterije, punjači i toplinske pumpe — usporedi ponude provjerenih instalatera u BiH i Hrvatskoj.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link to="/kalkulator" className="group inline-flex items-center justify-center gap-2 rounded-full bg-navy px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-all hover:scale-[1.03] hover:shadow-glow">
-              Izračunaj uštedu <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link to="/instalateri" className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-6 py-3.5 text-sm font-semibold text-navy transition-colors hover:bg-secondary">
-              Zatraži ponude
-            </Link>
-          </div>
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-eco" /> Provjereni instalateri</span>
-            <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4 text-eco" /> Ponude u 24h</span>
-            <span className="inline-flex items-center gap-1.5"><Award className="h-4 w-4 text-eco" /> 100% besplatno</span>
-          </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="lg:col-span-6 relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-elevated lg:aspect-[5/6]">
-            <img src={heroHouse} alt="Moderna kuća sa solarnim panelima" className="h-full w-full object-cover" width={1536} height={1152} />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
-          </div>
-          {/* Floating stat cards */}
-          <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="absolute -left-3 top-8 w-52 rounded-2xl glass p-4 shadow-elevated sm:-left-6 sm:w-60">
-            <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-eco-soft text-eco"><TrendingUp className="h-5 w-5" /></div>
-              <div>
-                <div className="text-xs text-muted-foreground">Mjesečna ušteda</div>
-                <div className="font-display text-lg font-semibold text-navy">€{<Counter to={184} />}</div>
-              </div>
-            </div>
-            <div className="mt-3 flex h-1.5 overflow-hidden rounded-full bg-muted">
-              <motion.div initial={{ width: 0 }} animate={{ width: "82%" }} transition={{ duration: 1.6, delay: 0.6, ease: "easeOut" }} className="bg-gradient-to-r from-eco to-solar" />
-            </div>
-          </motion.div>
-          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-3 bottom-10 w-56 rounded-2xl glass-dark p-4 text-primary-foreground shadow-elevated sm:-right-6">
-            <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-solar text-navy"><Sun className="h-5 w-5" /></div>
-              <div>
-                <div className="text-[11px] uppercase tracking-wider text-primary-foreground/60">Sustav 6.4 kWp</div>
-                <div className="font-display text-lg font-semibold">8.320 kWh/god</div>
-              </div>
-            </div>
-            <div className="mt-3 grid grid-cols-7 items-end gap-1 h-10">
-              {[40, 55, 70, 90, 80, 65, 50].map((h, i) => (
-                <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }} transition={{ duration: 0.8, delay: 0.8 + i * 0.07 }} className="rounded-sm bg-solar/80" />
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
+        <HeroCards />
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-eco" /> Provjereni instalateri</span>
+          <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4 text-eco" /> Ponude u 24h</span>
+          <span className="inline-flex items-center gap-1.5"><Award className="h-4 w-4 text-eco" /> 100% besplatno</span>
+        </div>
       </div>
     </section>
+  );
+}
+
+const heroCards = [
+  { img: cardHeating, title: "Grijanje i\nhlađenje", to: "/kalkulator", small: true },
+  { img: cardElectricity, title: "Tarife za\nstruju", to: "/financiranje", small: true },
+  {
+    img: heroHouse,
+    title: "Snizi račun za struju\nna desetljeća.",
+    desc: "Usporedi solarne ponude i vidi dugoročnu uštedu za svoj dom.",
+    to: "/kalkulator",
+    cta: "Zatraži ponudu",
+    feature: true,
+  },
+  { img: cardBattery, title: "Kućna\nbaterija", to: "/kalkulator", small: true },
+  { img: cardEv, title: "Punjenje\nelektričnih auta", to: "/kalkulator", small: true },
+];
+
+function HeroCards() {
+  return (
+    <div className="mt-12 grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-7 lg:[grid-template-columns:1fr_1fr_2.4fr_1fr_1fr] lg:items-stretch">
+      {heroCards.map((c, i) => {
+        const isFeature = c.feature;
+        return (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className={`${isFeature ? "col-span-2 md:col-span-4 lg:col-span-1 lg:row-span-1" : ""} ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
+          >
+            <Link
+              to={c.to}
+              className={`group relative block h-full overflow-hidden rounded-3xl shadow-elevated transition-transform duration-500 hover:-translate-y-1 ${
+                isFeature ? "aspect-[4/3] lg:aspect-auto lg:min-h-[520px]" : "aspect-[3/4] lg:min-h-[520px]"
+              }`}
+            >
+              <img
+                src={c.img}
+                alt={c.title.replace("\n", " ")}
+                loading={isFeature ? "eager" : "lazy"}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className={`absolute inset-0 ${isFeature ? "bg-gradient-to-t from-navy/85 via-navy/30 to-transparent" : "bg-gradient-to-t from-navy/80 via-navy/10 to-transparent"}`} />
+              <div className={`relative flex h-full flex-col justify-end p-5 sm:p-6 ${isFeature ? "lg:p-9" : ""} text-primary-foreground`}>
+                <h3 className={`font-display font-semibold leading-[1.1] tracking-tight whitespace-pre-line ${isFeature ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"}`}>
+                  {c.title}
+                </h3>
+                {isFeature && c.desc && (
+                  <p className="mt-3 max-w-md text-sm text-primary-foreground/85 sm:text-base">{c.desc}</p>
+                )}
+                {isFeature ? (
+                  <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-5 py-3 text-sm font-semibold text-navy transition-transform group-hover:scale-[1.03]">
+                    {c.cta} <ArrowRight className="h-4 w-4" />
+                  </span>
+                ) : (
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-primary-foreground/90">
+                    Saznaj više <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                )}
+              </div>
+            </Link>
+          </motion.div>
+        );
+      })}
+    </div>
   );
 }
 
