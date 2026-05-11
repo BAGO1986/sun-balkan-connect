@@ -84,7 +84,7 @@ function HeroCards() {
   const prev = () => setActive((a) => (a - 1 + heroCards.length) % heroCards.length);
 
   return (
-    <div className="mt-12">
+    <div>
       {/* Mobile: one full card at a time (swipeable) */}
       <div className="md:hidden overflow-hidden">
         <div
