@@ -43,7 +43,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
-      <div className="mx-auto max-w-[1400px] px-5 pt-10 pb-16 lg:px-8 lg:pt-16 lg:pb-24">
+      <div className="mx-auto w-full px-4 pt-10 pb-16 sm:px-6 lg:px-10 lg:pt-16 lg:pb-24">
         <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-eco/30 bg-eco-soft px-3 py-1 text-xs font-semibold text-eco">
             <Sparkles className="h-3.5 w-3.5" /> Solarna platforma za Balkan
@@ -56,7 +56,9 @@ function Hero() {
           </p>
         </motion.div>
 
-        <HeroCards />
+        <div className="mt-12 -mx-2 sm:-mx-4 lg:-mx-6">
+          <HeroCards />
+        </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-eco" /> Provjereni instalateri</span>
@@ -82,7 +84,7 @@ function HeroCards() {
   const prev = () => setActive((a) => (a - 1 + heroCards.length) % heroCards.length);
 
   return (
-    <div className="mt-12">
+    <div>
       {/* Mobile: one full card at a time (swipeable) */}
       <div className="md:hidden overflow-hidden">
         <div
