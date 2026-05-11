@@ -83,8 +83,37 @@ function HeroCards() {
 
   return (
     <div className="mt-12">
-      {/* Expanding flex carousel — same on mobile and desktop */}
-      <div className="flex gap-2 sm:gap-3 lg:gap-4 h-[340px] sm:h-[460px] lg:h-[560px]">
+      {/* Mobile: one full card at a time (swipeable) */}
+      <div className="md:hidden overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{ transform: `translateX(-${active * 100}%)` }}
+        >
+          {heroCards.map((c, i) => (
+            <Link
+              key={i}
+              to={c.to}
+              aria-label={c.title.replace("\n", " ")}
+              className="relative block h-[420px] w-full flex-shrink-0 overflow-hidden rounded-2xl shadow-elevated"
+            >
+              <img src={c.img} alt="" loading={i === 2 ? "eager" : "lazy"} className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/35 to-transparent" />
+              <div className="relative flex h-full flex-col justify-end p-5 text-primary-foreground">
+                <h3 className="font-display text-3xl font-semibold leading-[1.05] tracking-tight whitespace-pre-line">
+                  {c.title}
+                </h3>
+                <p className="mt-3 max-w-md text-sm text-primary-foreground/90">{c.desc}</p>
+                <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-5 py-3 text-sm font-semibold text-navy">
+                  {c.cta ?? "Saznaj više"} <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: expanding flex carousel */}
+      <div className="hidden md:flex gap-3 lg:gap-4 h-[460px] lg:h-[560px]">
         {heroCards.map((c, i) => {
           const isActive = i === active;
           return (
@@ -93,14 +122,8 @@ function HeroCards() {
               to={c.to}
               onMouseEnter={() => setActive(i)}
               onFocus={() => setActive(i)}
-              onClick={(e) => {
-                if (i !== active) {
-                  e.preventDefault();
-                  setActive(i);
-                }
-              }}
               aria-label={c.title.replace("\n", " ")}
-              className="group relative block overflow-hidden rounded-2xl sm:rounded-3xl shadow-elevated transition-[flex-grow] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-solar"
+              className="group relative block overflow-hidden rounded-3xl shadow-elevated transition-[flex-grow] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-solar"
               style={{ flexGrow: isActive ? 5 : 1, flexBasis: 0, minWidth: 0 }}
             >
               <img
@@ -110,19 +133,19 @@ function HeroCards() {
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className={`absolute inset-0 transition-opacity duration-700 ${isActive ? "bg-gradient-to-t from-navy/85 via-navy/35 to-transparent" : "bg-gradient-to-t from-navy/80 via-navy/40 to-navy/10"}`} />
-              <div className="relative flex h-full flex-col justify-end p-3 sm:p-5 lg:p-8 text-primary-foreground">
-                <h3 className={`font-display font-semibold leading-[1.05] tracking-tight whitespace-pre-line transition-all duration-500 ${isActive ? "text-xl sm:text-3xl lg:text-5xl" : "text-[11px] sm:text-lg lg:text-xl"}`}>
+              <div className="relative flex h-full flex-col justify-end p-5 lg:p-8 text-primary-foreground">
+                <h3 className={`font-display font-semibold leading-[1.05] tracking-tight whitespace-pre-line transition-all duration-500 ${isActive ? "text-3xl lg:text-5xl" : "text-lg lg:text-xl"}`}>
                   {isActive ? c.title : c.title.replace("\n", " ")}
                 </h3>
                 <div
                   className={`grid transition-[grid-template-rows,opacity,margin] duration-500 ${
-                    isActive ? "mt-2 sm:mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+                    isActive ? "mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-md text-xs sm:text-sm text-primary-foreground/90 lg:text-base">{c.desc}</p>
-                    <span className="mt-3 sm:mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-navy transition-transform group-hover:scale-[1.03]">
-                      {c.cta ?? "Saznaj više"} <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    <p className="max-w-md text-sm text-primary-foreground/90 lg:text-base">{c.desc}</p>
+                    <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-5 py-3 text-sm font-semibold text-navy transition-transform group-hover:scale-[1.03]">
+                      {c.cta ?? "Saznaj više"} <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
                 </div>
