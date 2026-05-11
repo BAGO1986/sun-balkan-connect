@@ -31,7 +31,6 @@ function Index() {
       <TrustBar />
       <SavingsPreview />
       <HowItWorks />
-      <InstallerStrip />
       <Comparison />
       <ContentTeaser />
       <CTA />
