@@ -93,7 +93,12 @@ function HeroCards() {
               to={c.to}
               onMouseEnter={() => setActive(i)}
               onFocus={() => setActive(i)}
-              onClick={() => setActive(i)}
+              onClick={(e) => {
+                if (i !== active) {
+                  e.preventDefault();
+                  setActive(i);
+                }
+              }}
               aria-label={c.title.replace("\n", " ")}
               className="group relative block overflow-hidden rounded-2xl sm:rounded-3xl shadow-elevated transition-[flex-grow] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-solar"
               style={{ flexGrow: isActive ? 5 : 1, flexBasis: 0, minWidth: 0 }}
