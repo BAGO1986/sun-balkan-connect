@@ -30,7 +30,6 @@ export function Footer() {
           <FooterCol title="Kompanija" links={[
             { to: "/o-nama", label: "O nama" },
             { to: "/kontakt", label: "Kontakt" },
-            { to: "/instalateri", label: "Za instalatere" },
             { to: "/kontakt", label: "FAQ" },
           ]} />
         </div>

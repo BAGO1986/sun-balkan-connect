@@ -42,7 +42,6 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
-          <Link to="/instalateri" className="text-sm font-medium text-navy/70 hover:text-navy">Za instalatere</Link>
           <Link to="/kalkulator" className="rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-[1.03]">
             Zatraži ponude
           </Link>
