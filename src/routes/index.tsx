@@ -73,7 +73,7 @@ const heroCards = [
   { img: cardHeating, title: "Grijanje i\nhlađenje", desc: "Toplinske pumpe i klima sustavi prilagođeni za naše tržište.", to: "/kalkulator" },
   { img: cardElectricity, title: "Tarife za\nstruju", desc: "Usporedi opskrbljivače i prebaci se na povoljniju tarifu.", to: "/financiranje" },
   { img: heroHouse, title: "Snizi račun\nna desetljeća.", desc: "Usporedi solarne ponude i vidi dugoročnu uštedu za svoj dom.", to: "/kalkulator", cta: "Zatraži ponudu" },
-  { img: cardBattery, title: "Kućna\nbaterija", desc: "Pohrani solarnu energiju i koristi je kad ti treba.", to: "/kalkulator" },
+  { img: cardBattery, title: "Zatraži ponudu", desc: "Pohrani solarnu energiju i koristi je kad ti treba.", to: "/kalkulator" },
   { img: cardEv, title: "Punjenje\nelektričnih auta", desc: "Kućni i poslovni punjači integrirani sa solarnom elektranom.", to: "/kalkulator" },
 ];
 
