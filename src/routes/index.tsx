@@ -105,7 +105,7 @@ function HeroCards() {
                 src={c.img}
                 alt={c.title.replace("\n", " ")}
                 loading={isFeature ? "eager" : "lazy"}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[700ms] ease-out will-change-transform group-hover:scale-[1.08]"
               />
               <div className={`absolute inset-0 ${isFeature ? "bg-gradient-to-t from-navy/85 via-navy/30 to-transparent" : "bg-gradient-to-t from-navy/80 via-navy/10 to-transparent"}`} />
               <div className={`relative flex h-full flex-col justify-end p-5 sm:p-6 ${isFeature ? "lg:p-9" : ""} text-primary-foreground`}>
