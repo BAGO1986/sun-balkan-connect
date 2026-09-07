@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Sun, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const nav = [
@@ -23,11 +23,14 @@ export function Header() {
   return (
     <header className={`sticky top-0 z-50 transition-all ${scrolled ? "glass shadow-[0_1px_0_color-mix(in_oklab,var(--navy)_8%,transparent)]" : "bg-transparent"}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-navy text-solar transition-transform group-hover:rotate-12">
-            <Sun className="h-5 w-5" strokeWidth={2.5} />
-          </span>
-          <span className="font-display text-lg font-semibold tracking-tight text-navy">Prosumer<span className="text-eco">.ba</span></span>
+        <Link to="/" className="group" aria-label="Prosumer.ba — naslovnica">
+          <img
+            src="/logo-prosumer-dark.svg"
+            alt="Prosumer.ba"
+            width="274"
+            height="55"
+            className="h-12 w-auto transition-transform duration-300 group-hover:scale-[1.04]"
+          />
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {nav.map((n) => (

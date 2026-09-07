@@ -55,7 +55,7 @@ function Hero() {
           </p>
         </motion.div>
 
-        <div className="mt-12 -mx-2 sm:-mx-4 lg:-mx-6">
+        <div className="mx-auto mt-12 max-w-[1440px]">
           <HeroCards />
         </div>
 
@@ -100,7 +100,7 @@ function HeroCards() {
               <img src={c.img} alt="" loading={i === 2 ? "eager" : "lazy"} className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/35 to-transparent" />
               <div className="relative flex h-full flex-col justify-end p-5 text-primary-foreground">
-                <h3 className="font-display text-3xl font-semibold leading-[1.05] tracking-tight whitespace-pre-line">
+                <h3 className="font-display text-3xl font-semibold leading-[1.05] tracking-tight whitespace-pre-line text-shadow-lg" >
                   {c.title}
                 </h3>
                 <p className="mt-3 max-w-md text-sm text-primary-foreground/90">{c.desc}</p>
@@ -121,11 +121,21 @@ function HeroCards() {
             <Link
               key={i}
               to={c.to}
-              onMouseEnter={() => setActive(i)}
-              onFocus={() => setActive(i)}
+              onClick={(event) => {
+                if (!isActive) {
+                  event.preventDefault();
+                  setActive(i);
+                }
+              }}
               aria-label={c.title.replace("\n", " ")}
-              className="group relative block overflow-hidden rounded-3xl shadow-elevated transition-[flex-grow] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-solar"
-              style={{ flexGrow: isActive ? 5 : 1, flexBasis: 0, minWidth: 0 }}
+              className="group relative block overflow-hidden rounded-3xl shadow-elevated transition-[flex-grow,flex-basis,margin] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-solar"
+              style={{
+                flexGrow: isActive ? 1 : 0,
+                flexShrink: 1,
+                flexBasis: isActive ? 0 : 210,
+                minWidth: 0,
+                margin: isActive ? "-15px 0" : "0",
+              }}
             >
               <img
                 src={c.img}
@@ -135,7 +145,7 @@ function HeroCards() {
               />
               <div className={`absolute inset-0 transition-opacity duration-700 ${isActive ? "bg-gradient-to-t from-navy/85 via-navy/35 to-transparent" : "bg-gradient-to-t from-navy/80 via-navy/40 to-navy/10"}`} />
               <div className="relative flex h-full flex-col justify-end p-5 lg:p-8 text-primary-foreground">
-                <h3 className={`font-display font-semibold leading-[1.05] tracking-tight whitespace-pre-line transition-all duration-500 ${isActive ? "text-3xl lg:text-5xl" : "text-lg lg:text-xl"}`}>
+                <h3 className={`font-display font-semibold text-shadow-lg/30 leading-[1.05] tracking-tight whitespace-pre-line transition-all duration-500 ${isActive ? "text-3xl lg:text-5xl" : "text-lg lg:text-xl"}`}>
                   {isActive ? c.title : c.title.replace("\n", " ")}
                 </h3>
                 <div
@@ -145,7 +155,7 @@ function HeroCards() {
                 >
                   <div className="overflow-hidden">
                     <p className="max-w-md text-sm text-primary-foreground/90 lg:text-base">{c.desc}</p>
-                    <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-5 py-3 text-sm font-semibold text-navy transition-transform group-hover:scale-[1.03]">
+                    <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-solar px-5 py-3 text-sm font-semibold text-navy transition-transform">
                       {c.cta ?? "Saznaj više"} <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>

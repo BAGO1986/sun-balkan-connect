@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="216" height="48" viewBox="0 0 216 48" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Prosumer.ba</title>
+  <desc id="desc">Prosumer.ba logo sa simbolom sunca</desc>
+
+  <defs>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16 15) rotate(49) scale(31)">
+      <stop stop-color="#FFE987"/>
+      <stop offset="0.52" stop-color="#FFD04E"/>
+      <stop offset="1" stop-color="#F8A713"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="24" cy="24" r="20" fill="url(#sun)"/>
+
+  <text x="56" y="31" fill="#101C2A" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="0.35">Prosumer</text>
+  <text x="159" y="31" fill="#20C568" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="0.35">.ba</text>
+</svg>

@@ -8,8 +8,13 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-solar text-navy"><Sun className="h-5 w-5" strokeWidth={2.5} /></span>
-              <span className="font-display text-lg font-semibold">Prosumer.ba</span>
+              <img
+            src="/logo-prosumer-white.svg"
+            alt="Prosumer.ba"
+            width="274"
+            height="55"
+            className="h-12 w-auto transition-transform duration-300 group-hover:scale-[1.04]"
+          />
             </div>
             <p className="mt-5 max-w-sm text-sm text-primary-foreground/70">
               Najveća platforma za usporedbu solarnih elektrana u Bosni i Hercegovini i Hrvatskoj. Provjereni instalateri, transparentne ponude.

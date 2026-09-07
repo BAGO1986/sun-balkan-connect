@@ -9,43 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ONamaRouteImport } from './routes/o-nama'
-import { Route as KontaktRouteImport } from './routes/kontakt'
-import { Route as KalkulatorRouteImport } from './routes/kalkulator'
-import { Route as KakoFunkcioniraRouteImport } from './routes/kako-funkcionira'
-import { Route as InstalateriRouteImport } from './routes/instalateri'
-import { Route as FinanciranjeRouteImport } from './routes/financiranje'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as FinanciranjeRouteImport } from './routes/financiranje'
+import { Route as InstalateriRouteImport } from './routes/instalateri'
+import { Route as KakoFunkcioniraRouteImport } from './routes/kako-funkcionira'
+import { Route as KalkulatorRouteImport } from './routes/kalkulator'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as ONamaRouteImport } from './routes/o-nama'
 
-const ONamaRoute = ONamaRouteImport.update({
-  id: '/o-nama',
-  path: '/o-nama',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KontaktRoute = KontaktRouteImport.update({
-  id: '/kontakt',
-  path: '/kontakt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KalkulatorRoute = KalkulatorRouteImport.update({
-  id: '/kalkulator',
-  path: '/kalkulator',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KakoFunkcioniraRoute = KakoFunkcioniraRouteImport.update({
-  id: '/kako-funkcionira',
-  path: '/kako-funkcionira',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InstalateriRoute = InstalateriRouteImport.update({
-  id: '/instalateri',
-  path: '/instalateri',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FinanciranjeRoute = FinanciranjeRouteImport.update({
-  id: '/financiranje',
-  path: '/financiranje',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -53,9 +28,34 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const FinanciranjeRoute = FinanciranjeRouteImport.update({
+  id: '/financiranje',
+  path: '/financiranje',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstalateriRoute = InstalateriRouteImport.update({
+  id: '/instalateri',
+  path: '/instalateri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KakoFunkcioniraRoute = KakoFunkcioniraRouteImport.update({
+  id: '/kako-funkcionira',
+  path: '/kako-funkcionira',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KalkulatorRoute = KalkulatorRouteImport.update({
+  id: '/kalkulator',
+  path: '/kalkulator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ONamaRoute = ONamaRouteImport.update({
+  id: '/o-nama',
+  path: '/o-nama',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -136,46 +136,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/o-nama': {
-      id: '/o-nama'
-      path: '/o-nama'
-      fullPath: '/o-nama'
-      preLoaderRoute: typeof ONamaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kontakt': {
-      id: '/kontakt'
-      path: '/kontakt'
-      fullPath: '/kontakt'
-      preLoaderRoute: typeof KontaktRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kalkulator': {
-      id: '/kalkulator'
-      path: '/kalkulator'
-      fullPath: '/kalkulator'
-      preLoaderRoute: typeof KalkulatorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kako-funkcionira': {
-      id: '/kako-funkcionira'
-      path: '/kako-funkcionira'
-      fullPath: '/kako-funkcionira'
-      preLoaderRoute: typeof KakoFunkcioniraRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/instalateri': {
-      id: '/instalateri'
-      path: '/instalateri'
-      fullPath: '/instalateri'
-      preLoaderRoute: typeof InstalateriRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/financiranje': {
-      id: '/financiranje'
-      path: '/financiranje'
-      fullPath: '/financiranje'
-      preLoaderRoute: typeof FinanciranjeRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -185,11 +150,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/financiranje': {
+      id: '/financiranje'
+      path: '/financiranje'
+      fullPath: '/financiranje'
+      preLoaderRoute: typeof FinanciranjeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instalateri': {
+      id: '/instalateri'
+      path: '/instalateri'
+      fullPath: '/instalateri'
+      preLoaderRoute: typeof InstalateriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kako-funkcionira': {
+      id: '/kako-funkcionira'
+      path: '/kako-funkcionira'
+      fullPath: '/kako-funkcionira'
+      preLoaderRoute: typeof KakoFunkcioniraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kalkulator': {
+      id: '/kalkulator'
+      path: '/kalkulator'
+      fullPath: '/kalkulator'
+      preLoaderRoute: typeof KalkulatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-nama': {
+      id: '/o-nama'
+      path: '/o-nama'
+      fullPath: '/o-nama'
+      preLoaderRoute: typeof ONamaRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -208,3 +208,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
